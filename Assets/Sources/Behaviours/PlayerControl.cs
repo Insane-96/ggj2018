@@ -47,23 +47,83 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit hit;
+	private bool isSelected = true;
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            Vector3 mouseDirection = (hit.point - transform.position).normalized;
-            mouseDirection.y = 0;
-            body.rotation = Quaternion.LookRotation(mouseDirection);
-        }
+	private int current = 0;
 
+	private bool checkOS = false;
 
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+	private Collider[] hitColliders;
+	// Use this for initialization
+	void Start()
+	{
+		body = GetComponent<Rigidbody>();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if (isSelected) 
+		{
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+			RaycastHit hit;
+
+			if (Physics.Raycast (ray, out hit)) 
+			{
+				Vector3 mouseDirection = (hit.point - transform.position).normalized;
+				mouseDirection.y = 0;
+				body.rotation = Quaternion.LookRotation (mouseDirection);
+			}
 
         Vector3 direction = horizontal * Camera.main.transform.right + vertical * Camera.main.transform.forward;
         direction.y = 0;
 
-        body.velocity = direction * speed;
+			float horizontal = Input.GetAxis ("Horizontal");
+			float vertical = Input.GetAxis ("Vertical");
+
+			Vector3 direction = horizontal * Camera.main.transform.right + vertical * Camera.main.transform.forward;
+			direction.y = 0;
+
+			body.velocity = direction * speed;
+
+			if (Input.GetMouseButtonDown(0)) 
+			{
+				hitColliders = ShpereFocus(body.position, 3f, 1 << 8);
+				if (hitColliders.Length != 0) 
+				{
+					hitColliders [current].GetComponent<IFocusable> ().Focus ();
+					checkOS = true;
+				}
+			}
+			if (Input.GetKeyDown(KeyCode.Q) && checkOS) 
+			{
+				if (current + 1 < hitColliders.Length) 
+				{
+					hitColliders [current].GetComponent<IFocusable> ().Unfocus ();
+					current++;
+					hitColliders [current].GetComponent<IFocusable> ().Focus ();
+				} 
+				else 
+				{
+					hitColliders [current].GetComponent<IFocusable> ().Unfocus ();
+					current = 0;
+					hitColliders [current].GetComponent<IFocusable> ().Focus ();
+				}
+			}
+		}
+	}
+
+	Collider[] ShpereFocus(Vector3 center, float radius, int layerMask)
+	{
+		Collider[] hitColliders = Physics.OverlapSphere(center, radius, layerMask);
+		return hitColliders;
+	}
+
+	public void Select()
+	{
+		
+	}
 
         OpenDoor();
 
@@ -75,21 +135,5 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
         {
             Debug.Log("Door Opened !!!");
         }
-    }
-
-    void ExplosionDamage(Vector3 center, float radius)
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        int i = 0;
-        while (i < hitColliders.Length)
-        {
-            i++;
-            hitColliders[i].SendMessage("" + i);
-        }
-    }
-
-    public void Select()
-    {
-        throw new System.NotImplementedException();
     }
 }

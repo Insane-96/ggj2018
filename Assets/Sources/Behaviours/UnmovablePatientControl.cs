@@ -25,15 +25,25 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
 
     void Update()
     {
-        Scream();
+        Scream(2f);
+        ReturnToPlayer();
     }
 
-    private void Scream()
+    private void Scream(float noiseRadius)
     {
         if (!isSelected)
             return;
 
         //TODO Scream
+        Collider[] cols = Physics.OverlapSphere(transform.position, noiseRadius);
+        foreach (Collider col in cols)
+        {
+            IEnemy enemy = col.GetComponent<IEnemy>();
+            if (enemy == null)
+                continue;
+
+            enemy.NoiseDetection(transform);
+        }
     }
 
     private void ReturnToPlayer()

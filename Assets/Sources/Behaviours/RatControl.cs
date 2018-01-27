@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseControl : MonoBehaviour, IPlayableCharacter
+public class RatControl : MonoBehaviour, IPlayableCharacter
 {
     private bool isSelected = false;
     public ICameraControl cameraControl;
@@ -17,11 +17,12 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
         playableCharacter = player.GetComponent<IPlayableCharacter>();
         cameraControl.LookAt(this.gameObject);
         isSelected = true;
-        this.GetComponent<Rigidbody>().isKinematic = true;
+        this.GetComponent<Rigidbody>().isKinematic = false;
     }
 
     void Start()
     {
+		playableCharacter = player.GetComponent<IPlayableCharacter>();
         body = GetComponent<Rigidbody>();
         cameraControl = Camera.main.GetComponent<ICameraControl>();
     }
@@ -29,6 +30,7 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
     void Update()
     {
         Movement();
+        ReturnToPlayer();
     }
 
     private void Movement()

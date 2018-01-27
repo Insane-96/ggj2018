@@ -50,4 +50,9 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 			hitColliders[i].SendMessage("" + i);
 		}
 	}
+
+    public void Select()
+    {
+        throw new System.NotImplementedException();
+    }
 }

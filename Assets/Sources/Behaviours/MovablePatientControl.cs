@@ -17,6 +17,7 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
         playableCharacter = player.GetComponent<IPlayableCharacter>();
         cameraControl.LookAt(this.gameObject);
         isSelected = true;
+        this.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void Start()
@@ -48,6 +49,7 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
     {
         if (Input.GetAxis("Jump") > 0f)
         {
+            this.GetComponent<Rigidbody>().isKinematic = false;
             isSelected = false;
             playableCharacter.Select();
             cameraControl.LookAt(player);

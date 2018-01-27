@@ -17,7 +17,7 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
         playableCharacter = player.GetComponent<IPlayableCharacter>();
         cameraControl.LookAt(this.gameObject);
         isSelected = true;
-        this.GetComponent<Rigidbody>().isKinematic = true;
+        this.GetComponent<Rigidbody>().isKinematic = false;
     }
 
     void Start()

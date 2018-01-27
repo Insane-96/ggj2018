@@ -9,7 +9,6 @@ public class FogControl : MonoBehaviour
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
-
     }
 
     void OnTriggerEnter(Collider collider)
@@ -27,8 +26,6 @@ public class FogControl : MonoBehaviour
     {
         var main = ps.main;
         main.loop = true;
-        main.startLifetime = 1f;
-
         ps.Play();
     }
 }

@@ -5,48 +5,36 @@ using UnityEngine;
 
 public class DoorOpening : MonoBehaviour,IDoor {
 
-    Quaternion finishRotation;
+    float timer;
 
-    Quaternion startRotation;
+    Quaternion DoorClosed;
 
-    bool isOpening;
-
-    float timeToClose;
-
-    void Awake()
-    {
-        startRotation = transform.rotation;
-    }
+    Quaternion DoorOpened;
 
     // Use this for initialization
     void Start () {
-  
-        finishRotation = new Quaternion(0, -1f, 0, 1);
+        DoorClosed = transform.rotation;
+        DoorOpened = new Quaternion(0, -1, 0, 1);
+
+        timer = 0;
     }
 
 	// Update is called once per frame
 	void Update () {
- 
-        if(isOpening)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, finishRotation, Time.deltaTime * 0.3f);
-            timeToClose = 5f;
-        }
-        if (transform.rotation == finishRotation)
-        {
-            isOpening = false;
-            timeToClose -= Time.deltaTime;
-        }
 
-        if(!isOpening && timeToClose <= 0)
-        {      
-            transform.rotation = Quaternion.Lerp(transform.rotation, startRotation, Time.deltaTime * 0.5f);
-            if (transform.rotation == startRotation) timeToClose = 5f;
+        if(timer > 0)
+        {
+           timer -= Time.deltaTime;
+           transform.rotation = Quaternion.Lerp(transform.rotation, DoorOpened, Time.deltaTime * 2f);                    
         }
+        else
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, DoorClosed, Time.deltaTime * 2f);
+        }   
     }
 
     void IDoor.OpenDoor()
     {
-        isOpening = true;
+        timer = 5;
     }
 }

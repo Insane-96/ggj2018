@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 275130400}
   - component: {fileID: 275130399}
   - component: {fileID: 275130398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 764029342}
   - component: {fileID: 764029341}
   - component: {fileID: 764029340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 1698380964}
   - component: {fileID: 1698380963}
   - component: {fileID: 1698380962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyYellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

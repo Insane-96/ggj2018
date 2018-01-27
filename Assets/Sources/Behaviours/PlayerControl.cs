@@ -37,17 +37,22 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 
 		body.velocity = direction * speed;
 
-
+		ExplosionDamage (body.position, 3f, 1 << 8);
 	}
 
-	void ExplosionDamage(Vector3 center, float radius)
+	void ExplosionDamage(Vector3 center, float radius, int layerMask)
 	{
-		Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+		Collider[] hitColliders = Physics.OverlapSphere(center, radius, layerMask);
 		int i = 0;
 		while (i < hitColliders.Length)
 		{
 			i++;
 			hitColliders[i].SendMessage("" + i);
 		}
+	}
+
+	public void Select()
+	{
+		
 	}
 }

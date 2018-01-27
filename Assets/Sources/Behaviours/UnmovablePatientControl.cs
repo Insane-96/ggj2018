@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseControl : MonoBehaviour, IPlayableCharacter
+public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
 {
     private bool isSelected = false;
     public ICameraControl cameraControl;
@@ -14,31 +14,36 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
     public void Select()
     {
         playableCharacter = player.GetComponent<IPlayableCharacter>();
+        cameraControl.LookAt(this.gameObject);
         isSelected = true;
     }
 
     void Start()
     {
-
+        cameraControl = Camera.main.GetComponent<ICameraControl>();
     }
 
     void Update()
     {
-        Movement();
+        Scream();
+        ReturnToPlayer();
     }
 
-    private void Movement()
+    private void Scream()
     {
         if (!isSelected)
             return;
 
-        //TODO Movements
+        //TODO Scream
     }
 
     private void ReturnToPlayer()
     {
-        isSelected = false;
-        playableCharacter.Select();
-        cameraControl.LookAt(player);
+		if (Input.GetButtonDown("JB3"))
+        {
+            isSelected = false;
+            playableCharacter.Select();
+            cameraControl.LookAt(player);
+        }
     }
 }

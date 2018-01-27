@@ -2,15 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FogControl : MonoBehaviour {
+public class FogControl : MonoBehaviour
+{
+    private ParticleSystem ps;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+        ps = GetComponent<ParticleSystem>();
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        IPlayableCharacter playableCharacter = collider.gameObject.GetComponent<IPlayableCharacter>();
+
+        if (playableCharacter != null)
+        {
+            var main = ps.main;
+            main.loop = false;
+        }
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        var main = ps.main;
+        main.loop = true;
+        ps.Play();
+    }
 }

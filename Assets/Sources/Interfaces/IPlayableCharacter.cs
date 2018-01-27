@@ -6,5 +6,5 @@ public interface IPlayableCharacter {
     /// <summary>
     /// Called to select the object and take control of it
     /// </summary>
-    void Select();
+	void Select();
 }

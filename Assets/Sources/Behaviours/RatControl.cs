@@ -46,8 +46,11 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
 
     private void ReturnToPlayer()
     {
-        isSelected = false;
-        playableCharacter.Select();
-        cameraControl.LookAt(player);
+        if (Input.GetAxis("Jump") > 0f)
+        {
+            isSelected = false;
+            playableCharacter.Select();
+            cameraControl.LookAt(player);
+        }
     }
 }

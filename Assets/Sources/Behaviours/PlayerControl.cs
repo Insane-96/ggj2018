@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour, IPlayableCharacter
+public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 {
     public float speed;
 

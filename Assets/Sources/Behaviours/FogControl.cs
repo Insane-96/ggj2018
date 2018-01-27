@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class FogControl : MonoBehaviour
 {
+    private ParticleSystem ps;
+
+    void Start()
+    {
+        ps = GetComponent<ParticleSystem>();
+
+    }
+
     void OnTriggerEnter(Collider collider)
     {
         IPlayableCharacter playableCharacter = collider.gameObject.GetComponent<IPlayableCharacter>();
 
         if (playableCharacter != null)
         {
-            GetComponent<Renderer>().material.color = new Color(0, 1, 0);
+            var main = ps.main;
+            main.loop = false;
         }
     }
 
     void OnTriggerExit(Collider collider)
     {
-        GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+        var main = ps.main;
+        main.loop = true;
+        main.startLifetime = 1f;
+
+        ps.Play();
     }
 }

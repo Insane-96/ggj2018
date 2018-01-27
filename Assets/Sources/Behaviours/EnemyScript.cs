@@ -35,11 +35,13 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     private Transform currentNoisePos;
 
+    private Animator animator;
+
     void Start()
     {
         currentPatrolState = PatrolState.Forward;
 
-        frequencyIdle = 0.1f;
+        frequencyIdle = 1f;
 
         tIdle = frequencyIdle;
 
@@ -49,7 +51,9 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         frequencyNoise = 5f;
 
-        speed = 0.2f;
+        speed = 0.02f;
+
+        animator = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -78,6 +82,8 @@ public class EnemyScript : MonoBehaviour, IEnemy
     //idle after noise detected
     private void NoiseIdle()
     {
+        animator.SetBool("Movement", false);
+
         tNoise -= Time.deltaTime;
 
         if (tNoise <= 0)
@@ -89,6 +95,9 @@ public class EnemyScript : MonoBehaviour, IEnemy
     //patrol to the current patrol spot
     private void Patrol()
     {
+
+        animator.SetBool("Movement", true);
+
         Debug.Log("Enter Patrol State");
 
         Vector3 direction = patrolSpot[currentPatrolSpot].position - this.transform.position;
@@ -111,6 +120,8 @@ public class EnemyScript : MonoBehaviour, IEnemy
     //idle in the current spot
     private void Idle()
     {
+        animator.SetBool("Movement", false);
+
         Debug.Log("Enter Idle State");
 
         tIdle -= Time.deltaTime;
@@ -166,6 +177,8 @@ public class EnemyScript : MonoBehaviour, IEnemy
     //when detect a noise, move to the noise spot
     private void MoveToNoise()
     {
+        animator.SetBool("Movement", true);
+
         Debug.Log("Enter MoveToNoise State");
 
         Vector3 direction = currentNoisePos.position - this.transform.position;

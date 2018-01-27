@@ -14,12 +14,13 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
     public void Select()
     {
         playableCharacter = player.GetComponent<IPlayableCharacter>();
+        cameraControl.LookAt(this.gameObject);
         isSelected = true;
     }
 
     void Start()
     {
-
+        cameraControl = Camera.main.GetComponent<ICameraControl>();
     }
 
     void Update()

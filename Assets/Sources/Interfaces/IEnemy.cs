@@ -7,5 +7,5 @@ public interface IEnemy {
     /// <summary>
     /// 
     /// </summary>
-    void NoiseDetection();
+    void NoiseDetection(Transform NoisePosition);
 }

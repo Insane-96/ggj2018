@@ -102,17 +102,21 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 
         OpenDoor();
     }
-   
-          
+
+    //Input.GetAxis("Fire3") >
     void OpenDoor()
     {
         RaycastHit hit;
-        //Debug.DrawRay(transform.position, transform.forward * 1, Color.red);
-        if (Input.GetAxis("Fire3") > 0 && Physics.Raycast(transform.position, transform.forward, out hit,1, 1 << LayerMask.NameToLayer("Door")))
-        {       
-            IDoorOpen door = hit.transform.GetComponent<IDoorOpen>();
+        Debug.DrawRay(transform.position, transform.forward * 1, Color.red);
+        if (Input.GetKey(KeyCode.P) && Physics.Raycast(transform.position, transform.forward, out hit,1, 1 << LayerMask.NameToLayer("Door")))
+        {
+            IDoor door = hit.transform.GetComponent<IDoor>();
             if (door != null)
-                door.isOpening = true;
+            {
+                Debug.Log("Door opened!");
+                door.OpenDoor();
+            }
+                
         }
     }
 

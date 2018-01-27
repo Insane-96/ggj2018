@@ -3,41 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpening : MonoBehaviour,IDoorOpen {
+public class DoorOpening : MonoBehaviour,IDoor {
 
     Quaternion finishRotation;
 
-    private bool isOpening;
+    Quaternion startRotation;
 
-    bool IDoorOpen.isOpening
+    bool isOpening;
+
+    float timeToClose;
+
+    void Awake()
     {
-        get
-        {
-            return isOpening;
-        }
-
-        set
-        {
-            isOpening = value;
-        }
+        startRotation = transform.rotation;
     }
 
     // Use this for initialization
     void Start () {
+  
         finishRotation = new Quaternion(0, -1f, 0, 1);
     }
 
 	// Update is called once per frame
 	void Update () {
-        if (isOpening) OpenDoor();
+ 
+        if(isOpening)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, finishRotation, Time.deltaTime * 0.3f);
+            timeToClose = 5f;
+        }
         if (transform.rotation == finishRotation)
         {
             isOpening = false;
-        }    
+            timeToClose -= Time.deltaTime;
+        }
+
+        if(!isOpening && timeToClose <= 0)
+        {      
+            transform.rotation = Quaternion.Lerp(transform.rotation, startRotation, Time.deltaTime * 0.5f);
+            if (transform.rotation == startRotation) timeToClose = 5f;
+        }
     }
 
-    void OpenDoor()
-    { 
-        transform.rotation = Quaternion.Lerp(transform.rotation, finishRotation, Time.deltaTime * 0.3f);
+    void IDoor.OpenDoor()
+    {
+        isOpening = true;
     }
 }

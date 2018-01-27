@@ -56,4 +56,5 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
             cameraControl.LookAt(player);
         }
     }
+
 }

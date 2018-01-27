@@ -111,11 +111,20 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
         }
     }
 
+    //Input.GetAxis("Fire3") >
     void OpenDoor()
     {
-        if (Input.GetKeyDown(KeyCode.P) && ImNearTheDoor)
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.forward * 1, Color.red);
+        if (Input.GetKey(KeyCode.P) && Physics.Raycast(transform.position, transform.forward, out hit,1, 1 << LayerMask.NameToLayer("Door")))
         {
-            Debug.Log("Door Opened !!!");
+            IDoor door = hit.transform.GetComponent<IDoor>();
+            if (door != null)
+            {
+                Debug.Log("Door opened!");
+                door.OpenDoor();
+            }
+                
         }
     }
 

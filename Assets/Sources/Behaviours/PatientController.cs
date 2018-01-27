@@ -15,9 +15,9 @@ public class PatientController : MonoBehaviour {
 	}
 
     //crea un overlavsphere e se dentro l'overlap ci sono enemy attiva il metodo NoiseDetection
-    private void MakeNoise(float noiseRadius)
+    private void MakeNoise(Vector3 center,float noiseRadius)
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, noiseRadius);
+        Collider[] cols = Physics.OverlapSphere(center, noiseRadius);
         foreach (Collider col in cols)
         {
             IEnemy enemy = col.GetComponent<IEnemy>();

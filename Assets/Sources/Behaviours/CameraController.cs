@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour, ICameraControl {
 	
 	// Update is called once per frame
 	void Update () {
-         
+
     }
 
     public void LookAt(GameObject gameObject)

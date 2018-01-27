@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseControl : MonoBehaviour, IPlayableCharacter
+public class RatControl : MonoBehaviour, IPlayableCharacter
 {
     private bool isSelected = false;
     public ICameraControl cameraControl;

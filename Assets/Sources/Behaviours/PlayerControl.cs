@@ -2,20 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour, IPlayableCharacter 
+public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
+
 {
 	public float speed;
 
 	private Rigidbody body;
 
-	// Use this for initialization
-	void Start()
+    private bool iHaveTheKey;
+    private bool imNearTheDoor;
+
+    public bool IHaveTheKey
+    {
+        get
+        {
+            return iHaveTheKey;
+        }
+        set
+        {
+            iHaveTheKey = value;
+        }
+    }
+
+    public bool ImNearTheDoor
+    {
+        get
+        {
+            return imNearTheDoor;
+        }
+        set
+        {
+            imNearTheDoor = value;
+        }
+    }
+
+    // Use this for initialization
+    void Start()
 	{
 		body = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
-	void FixedUpdate()
+	void Update()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -37,6 +65,7 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 
 		body.velocity = direction * speed;
 
+        OpenDoor();
 
 	}
 
@@ -50,4 +79,28 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 			hitColliders[i].SendMessage("" + i);
 		}
 	}
+
+    void OpenDoor()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && ImNearTheDoor)
+        {
+            Debug.Log("Door Opened !!!");
+        }
+    }
+
+	void ExplosionDamage(Vector3 center, float radius)
+	{
+		Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+		int i = 0;
+		while (i < hitColliders.Length)
+		{
+			i++;
+			hitColliders[i].SendMessage("" + i);
+		}
+	}
+
+    public void Select()
+    {
+        throw new System.NotImplementedException();
+    }
 }

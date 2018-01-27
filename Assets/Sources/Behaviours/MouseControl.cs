@@ -14,12 +14,13 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
 
     public void Select()
     {
-        playableCharacter = player.GetComponent<IPlayableCharacter>();
+        
         isSelected = true;
     }
 
     void Start()
     {
+		playableCharacter = player.GetComponent<IPlayableCharacter>();
         body = GetComponent<Rigidbody>();
     }
 

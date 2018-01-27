@@ -39,6 +39,9 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     public bool rewind;
 
+    private float tRay;
+    private float frequencyRay;
+
     void Start()
     {
         currentPatrolState = PatrolState.Forward;
@@ -54,10 +57,32 @@ public class EnemyScript : MonoBehaviour, IEnemy
         speed = 0.02f;
 
         animator = this.GetComponent<Animator>();
+
+        frequencyRay = 0.5f;
     }
 
     void Update()
     {
+        tRay -= Time.deltaTime;
+
+        if(tRay <= 0)
+        {
+            tRay = frequencyRay;
+            Vector3 frw = this.transform.forward;
+
+            RaycastHit hit;
+
+            Ray ray = new Ray(transform.position, frw);
+
+            if(Physics.Raycast(ray, out hit, 10f))
+            {
+                if(hit.transform.GetComponent<IMainCharacter>()!= null)
+                {
+                    GameOver();
+                }
+            }
+        }
+
         switch (currentState)
         {
             case EnemyState.Idle:
@@ -227,6 +252,13 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         currentState = EnemyState.NoiseDetected;
     }
+
+
+    private void GameOver()
+    {
+        Debug.Log("GAME OVER");
+    }
+
 
     //player spotted 
     private void OnTriggerEnter(Collider other)

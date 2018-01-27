@@ -48,7 +48,10 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
 
     private void ReturnToPlayer()
     {
-        if (Input.GetAxis("Jump") > 0f)
+        if (!isSelected)
+            return;
+
+        if (Input.GetButtonDown("JB3") && Vector3.Distance(player.transform.position, this.transform.position) <= 6.0f)
         {
             isSelected = false;
             playableCharacter.Select();

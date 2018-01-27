@@ -11,22 +11,20 @@ public class PatientController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
 
-
-    //crea un overlavsphere ogni click di un tasto e se dentro l'overlap ci sono enemy attiva l 'interfaccia Inoisedetected
-   /* private void MakeNoise()
+    //crea un overlavsphere e se dentro l'overlap ci sono enemy attiva il metodo NoiseDetection
+    private void MakeNoise(float noiseRadius)
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, noiseRadius);
         foreach (Collider col in cols)
         {
-            IListener Ilistener = col.GetComponent<IListener>();
-            if (Ilistener == null)
+            IEnemy enemy = col.GetComponent<IEnemy>();
+            if (enemy == null)
                 continue;
 
-            Ilistener.Listen(transform.position);
+            enemy.NoiseDetection();
         }
-    }*/
-
+    }
 }

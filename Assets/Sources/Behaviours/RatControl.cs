@@ -17,6 +17,7 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
         playableCharacter = player.GetComponent<IPlayableCharacter>();
         cameraControl.LookAt(this.gameObject);
         isSelected = true;
+        this.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void Start()
@@ -48,6 +49,7 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
     {
         if (Input.GetAxis("Jump") > 0f)
         {
+            this.GetComponent<Rigidbody>().isKinematic = true;
             isSelected = false;
             playableCharacter.Select();
             cameraControl.LookAt(player);

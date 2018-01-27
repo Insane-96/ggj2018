@@ -48,7 +48,7 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
 
     private void ReturnToPlayer()
     {
-        if (Input.GetAxis("Jump") > 0f)
+		if (Input.GetButtonDown("JB3"))
         {
             isSelected = false;
             playableCharacter.Select();

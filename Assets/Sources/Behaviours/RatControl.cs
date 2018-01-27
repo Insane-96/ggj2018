@@ -49,7 +49,7 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
 
     private void ReturnToPlayer()
     {
-        if (Input.GetAxis("Jump") > 0f)
+        if (Input.GetButtonDown("JB3"))
         {
             this.GetComponent<Rigidbody>().isKinematic = true;
             isSelected = false;

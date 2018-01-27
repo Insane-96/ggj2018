@@ -10,6 +10,11 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 
 	private bool isSelected = true;
 
+	private int current = 0;
+
+	private bool checkOS = false;
+
+	private Collider[] hitColliders;
 	// Use this for initialization
 	void Start()
 	{
@@ -41,20 +46,37 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 
 			body.velocity = direction * speed;
 
-			if (Input.GetMouseButton (0)) 
+			if (Input.GetMouseButtonDown(0)) 
 			{
-				ExplosionDamage (body.position, 3f, 1 << 8);
+				hitColliders = ShpereFocus(body.position, 3f, 1 << 8);
+				if (hitColliders.Length != 0) 
+				{
+					hitColliders [current].GetComponent<IFocusable> ().Focus ();
+					checkOS = true;
+				}
+			}
+			if (Input.GetKeyDown(KeyCode.Q) && checkOS) 
+			{
+				if (current + 1 < hitColliders.Length) 
+				{
+					hitColliders [current].GetComponent<IFocusable> ().Unfocus ();
+					current++;
+					hitColliders [current].GetComponent<IFocusable> ().Focus ();
+				} 
+				else 
+				{
+					hitColliders [current].GetComponent<IFocusable> ().Unfocus ();
+					current = 0;
+					hitColliders [current].GetComponent<IFocusable> ().Focus ();
+				}
 			}
 		}
 	}
 
-	void ExplosionDamage(Vector3 center, float radius, int layerMask)
+	Collider[] ShpereFocus(Vector3 center, float radius, int layerMask)
 	{
 		Collider[] hitColliders = Physics.OverlapSphere(center, radius, layerMask);
-		for (int i = 0; i < hitColliders.Length; i++)
-		{
-			Debug.Log ("" + i);
-		}
+		return hitColliders;
 	}
 
 	public void Select()

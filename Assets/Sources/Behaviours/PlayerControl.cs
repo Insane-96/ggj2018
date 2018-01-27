@@ -2,11 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour, IPlayableCharacter 
-{
-	public float speed;
+public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 
-	private Rigidbody body;
+{
+    public float speed;
+
+    private Rigidbody body;
+
+    private bool iHaveTheKey;
+    private bool imNearTheDoor;
+
+    public bool IHaveTheKey
+    {
+        get
+        {
+            return iHaveTheKey;
+        }
+        set
+        {
+            iHaveTheKey = value;
+        }
+    }
+
+    public bool ImNearTheDoor
+    {
+        get
+        {
+            return imNearTheDoor;
+        }
+        set
+        {
+            imNearTheDoor = value;
+        }
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        body = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 	private bool isSelected = true;
 
@@ -37,6 +76,8 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 				body.rotation = Quaternion.LookRotation (mouseDirection);
 			}
 
+        Vector3 direction = horizontal * Camera.main.transform.right + vertical * Camera.main.transform.forward;
+        direction.y = 0;
 
 			float horizontal = Input.GetAxis ("Horizontal");
 			float vertical = Input.GetAxis ("Vertical");
@@ -83,4 +124,16 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 	{
 		
 	}
+
+        OpenDoor();
+
+    }
+
+    void OpenDoor()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && ImNearTheDoor)
+        {
+            Debug.Log("Door Opened !!!");
+        }
+    }
 }

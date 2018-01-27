@@ -30,6 +30,7 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
     void Update()
     {
         Movement();
+        ReturnToPlayer();
     }
 
     private void Movement()

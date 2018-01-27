@@ -26,6 +26,7 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
     void Update()
     {
         Scream();
+        ReturnToPlayer();
     }
 
     private void Scream()

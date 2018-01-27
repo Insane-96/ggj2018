@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
     private bool iHaveTheKey;
     private bool imNearTheDoor;
 
-	private ICameraControl cameraControl;
+    private ICameraControl cameraControl;
 
     public bool IHaveTheKey
     {
@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
     void Start()
     {
         body = GetComponent<Rigidbody>();
-		cameraControl = Camera.main.GetComponent<ICameraControl> ();
+        cameraControl = Camera.main.GetComponent<ICameraControl>();
     }
 
     // Update is called once per frame
@@ -70,44 +70,45 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
                 hitColliders = ShpereFocus(body.position, 3f, 1 << 8);
                 if (hitColliders.Length != 0)
                 {
-					isSelected = false;
+                    isSelected = false;
                     hitColliders[current].GetComponent<IFocusable>().Focus();
                     checkOS = true;
-					body.isKinematic = true;
+                    body.isKinematic = true;
                 }
             }
         }
 
-		if (Input.GetKeyDown (KeyCode.Q) && checkOS) 
-		{
-			if (current + 1 < hitColliders.Length) 
-			{
-				hitColliders [current].GetComponent<IFocusable> ().Unfocus ();
-				current++;
-				hitColliders [current].GetComponent<IFocusable> ().Focus ();
-			} 
-			else 
-			{
-				hitColliders [current].GetComponent<IFocusable> ().Unfocus ();
-				current = 0;
-				hitColliders [current].GetComponent<IFocusable> ().Focus ();
-			}
-		}
+        if (Input.GetKeyDown(KeyCode.Q) && checkOS)
+        {
+            if (current + 1 < hitColliders.Length)
+            {
+                hitColliders[current].GetComponent<IFocusable>().Unfocus();
+                current++;
+                hitColliders[current].GetComponent<IFocusable>().Focus();
+            }
+            else
+            {
+                hitColliders[current].GetComponent<IFocusable>().Unfocus();
+                current = 0;
+                hitColliders[current].GetComponent<IFocusable>().Focus();
+            }
+        }
 
         OpenDoor();
 
-		if (Input.GetKeyDown (KeyCode.E)) 
-		{
-			hitColliders [current].gameObject.GetComponent<IPlayableCharacter> ().Select ();
-			cameraControl.LookAt (hitColliders [current].gameObject);
-		}
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            hitColliders[current].gameObject.GetComponent<IPlayableCharacter>().Select();
+            cameraControl.LookAt(hitColliders[current].gameObject);
+            hitColliders[current].GetComponent<IFocusable>().Unfocus();
+        }
 
-		if (Input.GetKeyDown (KeyCode.Z)) 
-		{
-			body.isKinematic = false;
-			isSelected = true;
-			Debug.Log ("cacca");
-		}
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            body.isKinematic = false;
+            isSelected = true;
+            hitColliders[current].GetComponent<IFocusable>().Unfocus();
+        }
     }
 
     void OpenDoor()
@@ -124,10 +125,10 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
         return hitColliders;
     }
 
-	public void Select()
+    public void Select()
     {
-		isSelected = true;
-		body.isKinematic = false;
+        isSelected = true;
+        body.isKinematic = false;
 
     }
 }

@@ -29,6 +29,7 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
     void Update()
     {
         Movement();
+        ReturnToPlayer();
     }
 
     private void Movement()

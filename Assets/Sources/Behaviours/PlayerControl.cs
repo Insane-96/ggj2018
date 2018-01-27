@@ -9,6 +9,6 @@ public class PlayerControl : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+        transform.position += new Vector3(0.1f, 0, 0);
 	}
 }

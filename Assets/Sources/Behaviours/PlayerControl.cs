@@ -2,20 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour, IPlayableCharacter 
+public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 {
 	public float speed;
 
 	private Rigidbody body;
 
-	// Use this for initialization
-	void Start()
+    private bool iHaveTheKey;
+
+    public bool IHaveTheKey
+    {
+        get
+        {
+            return iHaveTheKey;
+        }
+        set
+        {
+            iHaveTheKey = value;
+        }
+    }
+
+    // Use this for initialization
+    void Start()
 	{
 		body = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
-	void FixedUpdate()
+	void Update()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -36,8 +50,6 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter
 		direction.y = 0;
 
 		body.velocity = direction * speed;
-
-
 	}
 
 	void ExplosionDamage(Vector3 center, float radius)

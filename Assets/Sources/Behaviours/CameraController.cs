@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour, ICameraControl
 
     public GameObject currentFollowing;
     private GameObject oldFollowing;
-    
+
     [Tooltip("Seconds in which the lerp will be completed")]
     public float lerpSpeed = 1;
     public float distance = 5;
@@ -20,12 +20,6 @@ public class CameraController : MonoBehaviour, ICameraControl
     {
         transform.Rotate(new Vector3(45, 0, 0));
     }
-<<<<<<< HEAD
-	
-	// Update is called once per frame
-	void Update () {
-
-=======
 
     bool changed = false;
 
@@ -41,7 +35,6 @@ public class CameraController : MonoBehaviour, ICameraControl
         {
             transform.position = new Vector3(0, height, -distance) + currentFollowing.transform.position;
         }
->>>>>>> dev
     }
 
     public void LookAt(GameObject gameObject)

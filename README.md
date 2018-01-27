@@ -13,9 +13,10 @@ Control: XBox / PS
 
 Focus: LB / L1  
 Nintendo Switch: RB / R1  
-Select: A / X  
+Select: A / Cross  
 SimpleInteraction: X / Square  
-ADvancedInteraction: B / Circle  
+AdvancedInteraction: B / Circle  
+BackToPlayer: Y / Triangle
 
 ## ASSETS: 
 in ordine di importanza  

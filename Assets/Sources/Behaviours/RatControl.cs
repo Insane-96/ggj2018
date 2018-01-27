@@ -22,6 +22,7 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
 
     void Start()
     {
+		playableCharacter = player.GetComponent<IPlayableCharacter>();
         body = GetComponent<Rigidbody>();
         cameraControl = Camera.main.GetComponent<ICameraControl>();
     }

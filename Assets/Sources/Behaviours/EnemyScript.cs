@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
     private PatrolState currentPatrolState;
 
     private float tIdle;
-    private float frequencyIdle;
+    public float frequencyIdle;
 
     private float tNoise;
     private float frequencyNoise;
@@ -37,11 +37,11 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     private Animator animator;
 
+    public bool rewind;
+
     void Start()
     {
         currentPatrolState = PatrolState.Forward;
-
-        frequencyIdle = 1f;
 
         tIdle = frequencyIdle;
 
@@ -136,15 +136,27 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
                 if (currentPatrolSpot >= patrolSpot.Length)
                 {
-                    currentPatrolSpot = 1;
+                    if(!rewind)
+                    {
+                        currentPatrolSpot = 0;
+
+                        Vector3 dir = patrolSpot[currentPatrolSpot].position - this.transform.position;
+
+                        dir.y = 0;
+
+                        transform.LookAt(dir);
+
+                        currentState = EnemyState.Patrol;
+
+                        return;
+                    }
+                    currentPatrolSpot--;
                     currentPatrolState = PatrolState.Backward;
                 }
 
                 Vector3 direction = patrolSpot[currentPatrolSpot].position - this.transform.position;
 
                 direction.y = 0;
-
-
 
                 transform.LookAt(direction);
 

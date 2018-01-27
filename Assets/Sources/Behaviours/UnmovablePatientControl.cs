@@ -14,12 +14,13 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
     public void Select()
     {
         playableCharacter = player.GetComponent<IPlayableCharacter>();
+        cameraControl.LookAt(this.gameObject);
         isSelected = true;
     }
 
     void Start()
     {
-
+        cameraControl = Camera.main.GetComponent<ICameraControl>();
     }
 
     void Update()
@@ -37,8 +38,11 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
 
     private void ReturnToPlayer()
     {
-        isSelected = false;
-        playableCharacter.Select();
-        cameraControl.LookAt(player);
+        if (Input.GetAxis("Jump") > 0f)
+        {
+            isSelected = false;
+            playableCharacter.Select();
+            cameraControl.LookAt(player);
+        }
     }
 }

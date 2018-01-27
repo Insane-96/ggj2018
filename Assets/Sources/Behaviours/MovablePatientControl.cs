@@ -15,12 +15,14 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
     public void Select()
     {
         playableCharacter = player.GetComponent<IPlayableCharacter>();
+        cameraControl.LookAt(this.gameObject);
         isSelected = true;
     }
 
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        cameraControl = Camera.main.GetComponent<ICameraControl>();
     }
 
     void Update()
@@ -33,18 +35,6 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
         if (!isSelected)
             return;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            Vector3 mouseDirection = (hit.point - transform.position).normalized;
-            mouseDirection.y = 0;
-            body.rotation = Quaternion.LookRotation(mouseDirection);
-        }
-
-
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -56,9 +46,12 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
 
     private void ReturnToPlayer()
     {
-        isSelected = false;
-        playableCharacter.Select();
-        cameraControl.LookAt(player);
+        if (Input.GetAxis("Jump") > 0f)
+        {
+            isSelected = false;
+            playableCharacter.Select();
+            cameraControl.LookAt(player);
+        }
     }
 
 }

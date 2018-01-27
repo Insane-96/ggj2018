@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour, ICameraControl
 
     public GameObject currentFollowing;
     private GameObject oldFollowing;
-    
+
     [Tooltip("Seconds in which the lerp will be completed")]
     public float lerpSpeed = 1;
     public float distance = 5;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
+
 {
 	public float speed;
 
@@ -65,6 +66,18 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 		body.velocity = direction * speed;
 
         OpenDoor();
+
+	}
+
+	void ExplosionDamage(Vector3 center, float radius)
+	{
+		Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+		int i = 0;
+		while (i < hitColliders.Length)
+		{
+			i++;
+			hitColliders[i].SendMessage("" + i);
+		}
 	}
 
     void OpenDoor()

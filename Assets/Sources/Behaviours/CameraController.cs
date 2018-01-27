@@ -3,31 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour, ICameraControl {
+public class CameraController : MonoBehaviour, ICameraControl
+{
 
-    public Transform player;
+    public GameObject currentFollowing;
+    private GameObject oldFollowing;
+    
+    [Tooltip("Seconds in which the lerp will be completed")]
+    public float lerpSpeed = 1;
+    public float distance = 5;
+    public float height = 6;
 
-    public float speed;
- 
-    public float distance;
+    private float moving = 0f;
 
-    public float height;
-
-
-    // Use this for initialization
-    void Start () {
-
-        transform.position = new Vector3(0, height, distance) + player.transform.position;
-        transform.LookAt(player);
+    void Start()
+    {
+        transform.Rotate(new Vector3(45, 0, 0));
     }
-	
-	// Update is called once per frame
-	void Update () {
-         
+
+    bool changed = false;
+
+    void Update()
+    {
+        if (moving > 0f)
+        {
+            transform.position = Vector3.Lerp(new Vector3(0, height, -distance) + currentFollowing.transform.position, new Vector3(0, height, -distance) + oldFollowing.transform.position, moving);
+            moving -= Time.deltaTime / lerpSpeed;
+            Debug.Log("moving " + moving);
+        }
+        else
+        {
+            transform.position = new Vector3(0, height, -distance) + currentFollowing.transform.position;
+        }
     }
 
     public void LookAt(GameObject gameObject)
-    {     
-        transform.position = Vector3.Lerp(transform.position, new Vector3(0, height, distance) + gameObject.transform.position, speed * Time.deltaTime);
+    {
+        moving = 1.0f;
+        oldFollowing = currentFollowing;
+        currentFollowing = gameObject;
     }
 }

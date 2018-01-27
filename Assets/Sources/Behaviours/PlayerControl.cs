@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 	private Rigidbody body;
 
     private bool iHaveTheKey;
+    private bool imNearTheDoor;
 
     public bool IHaveTheKey
     {
@@ -19,6 +20,18 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
         set
         {
             iHaveTheKey = value;
+        }
+    }
+
+    public bool ImNearTheDoor
+    {
+        get
+        {
+            return imNearTheDoor;
+        }
+        set
+        {
+            imNearTheDoor = value;
         }
     }
 
@@ -50,7 +63,17 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 		direction.y = 0;
 
 		body.velocity = direction * speed;
+
+        OpenDoor();
 	}
+
+    void OpenDoor()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && ImNearTheDoor)
+        {
+            Debug.Log("Door Opened !!!");
+        }
+    }
 
 	void ExplosionDamage(Vector3 center, float radius)
 	{

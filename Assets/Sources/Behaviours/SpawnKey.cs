@@ -12,15 +12,4 @@ public class SpawnKey : MonoBehaviour
         int random = Random.Range(0, spawnPoints.Length - 1);
         Instantiate(key, spawnPoints[random]);
     }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        IMainCharacter mainCharacter = collider.gameObject.GetComponent<IMainCharacter>();
-
-        if (mainCharacter != null)
-        {
-            mainCharacter.IHaveTheKey = true;
-            Debug.Log(string.Format("Key: {0}", mainCharacter.IHaveTheKey));
-        }
-    }
 }

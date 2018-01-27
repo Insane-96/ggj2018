@@ -294,8 +294,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 344746356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.37, y: 0.33, z: 1.9649892}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_LocalPosition: {x: 3.37, y: 0.1, z: 1.9649892}
+  m_LocalScale: {x: 0.33, y: 0.1, z: 0.33}
   m_Children:
   - {fileID: 1498405761}
   - {fileID: 829866688}
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentFollowing: {fileID: 2061658173}
-  lerpSpeed: 2
+  lerpSpeed: 1
   distance: 5
   height: 6
 --- !u!1 &818336127
@@ -1061,8 +1061,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1145757720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6729798, y: 0.33, z: 1.9649892}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_LocalPosition: {x: 1.6729798, y: 0.1, z: 1.9649892}
+  m_LocalScale: {x: 0.33, y: 0.1, z: 0.33}
   m_Children:
   - {fileID: 1158712929}
   - {fileID: 442322007}

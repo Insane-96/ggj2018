@@ -18,7 +18,6 @@ public class EnemyScript : MonoBehaviour, IEnemy
         Backward
     }
 
-
     private EnemyState currentState;
 
     private PatrolState currentPatrolState;
@@ -130,6 +129,14 @@ public class EnemyScript : MonoBehaviour, IEnemy
                     currentPatrolState = PatrolState.Backward;
                 }
 
+                Vector3 direction = patrolSpot[currentPatrolSpot].position - this.transform.position;
+
+                direction.y = 0;
+
+
+
+                transform.LookAt(direction);
+
                 currentState = EnemyState.Patrol;
                 return;
             }
@@ -142,6 +149,12 @@ public class EnemyScript : MonoBehaviour, IEnemy
                     currentPatrolSpot = 0;
                     currentPatrolState = PatrolState.Forward;
                 }
+
+                Vector3 direction = patrolSpot[currentPatrolSpot].position - this.transform.position;
+
+                direction.y = 0;
+
+                transform.LookAt(direction);
 
                 currentState = EnemyState.Patrol;
                 return;
@@ -180,6 +193,13 @@ public class EnemyScript : MonoBehaviour, IEnemy
     {
         Debug.Log("noise detected");
         currentNoisePos = NoisePosition;
+
+        Vector3 direction = currentNoisePos.position - this.transform.position;
+
+        direction.y = 0;
+
+        transform.LookAt(direction);
+
         currentState = EnemyState.NoiseDetected;
     }
 

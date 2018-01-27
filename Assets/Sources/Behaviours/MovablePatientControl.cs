@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseControl : MonoBehaviour, IPlayableCharacter
+public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
 {
     private bool isSelected = false;
     public ICameraControl cameraControl;
@@ -32,7 +32,7 @@ public class MouseControl : MonoBehaviour, IPlayableCharacter
     {
         if (!isSelected)
             return;
-        
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;

@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 6a59c8199312c401c8dc76efcd3dcdae
+timeCreated: 1517092692
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Guard_Room
+    100002: //RootNode
+    100004: pCube37
+    100006: pCube52
+    100008: pCube53
+    100010: pCube54
+    100012: pCube55
+    100014: pCube56
+    100016: pCube57
+    100018: pCube58
+    100020: pCube59
+    100022: pCube60
+    100024: pCube61
+    100026: pCube62
+    100028: pCube63
+    100030: polySurface24
+    100032: wall_1
+    100034: wall_2
+    100036: wall_3
+    100038: wall_door
+    100040: wall_long
+    400000: Guard_Room
+    400002: //RootNode
+    400004: pCube37
+    400006: pCube52
+    400008: pCube53
+    400010: pCube54
+    400012: pCube55
+    400014: pCube56
+    400016: pCube57
+    400018: pCube58
+    400020: pCube59
+    400022: pCube60
+    400024: pCube61
+    400026: pCube62
+    400028: pCube63
+    400030: polySurface24
+    400032: wall_1
+    400034: wall_2
+    400036: wall_3
+    400038: wall_door
+    400040: wall_long
+    2100000: guard_room
+    2100002: lambert1
+    2300000: pCube37
+    2300002: pCube52
+    2300004: pCube53
+    2300006: pCube54
+    2300008: pCube55
+    2300010: pCube56
+    2300012: pCube57
+    2300014: pCube58
+    2300016: pCube59
+    2300018: pCube60
+    2300020: pCube61
+    2300022: pCube62
+    2300024: pCube63
+    2300026: polySurface24
+    2300028: wall_1
+    2300030: wall_2
+    2300032: wall_3
+    2300034: wall_door
+    2300036: wall_long
+    3300000: pCube37
+    3300002: pCube52
+    3300004: pCube53
+    3300006: pCube54
+    3300008: pCube55
+    3300010: pCube56
+    3300012: pCube57
+    3300014: pCube58
+    3300016: pCube59
+    3300018: pCube60
+    3300020: pCube61
+    3300022: pCube62
+    3300024: pCube63
+    3300026: polySurface24
+    3300028: wall_1
+    3300030: wall_2
+    3300032: wall_3
+    3300034: wall_door
+    3300036: wall_long
+    4300000: wall_door
+    4300002: polySurface24
+    4300004: wall_2
+    4300006: wall_1
+    4300008: pCube37
+    4300010: pCube52
+    4300012: pCube53
+    4300014: pCube54
+    4300016: pCube55
+    4300018: pCube56
+    4300020: wall_3
+    4300022: wall_long
+    4300024: pCube57
+    4300026: pCube58
+    4300028: pCube59
+    4300030: pCube60
+    4300032: pCube61
+    4300034: pCube62
+    4300036: pCube63
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

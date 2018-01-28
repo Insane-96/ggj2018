@@ -36,7 +36,7 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
 
     private void MakeNoise()
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
+        Collider[] cols = Physics.OverlapSphere(transform.position, 6f);
         foreach (Collider col in cols)
         {
             IEnemy enemy = col.GetComponent<IEnemy>();

@@ -5,7 +5,17 @@ using UnityEngine;
 
 public class DoorOpening : MonoBehaviour,IDoor {
 
+    public enum Facing
+    {
+        X_NEGATIVE,
+        Z_NEGATIVE,
+        X_POSITIVE,
+        Z_POSITIVE
+    }
+
     float timer;
+
+    public Facing rotation = Facing.X_POSITIVE;
 
     Quaternion DoorClosed;
 
@@ -14,7 +24,8 @@ public class DoorOpening : MonoBehaviour,IDoor {
     // Use this for initialization
     void Start () {
         DoorClosed = transform.rotation;
-        DoorOpened = new Quaternion(0, -1, 0, 1);
+        Debug.Log(this.gameObject.name + " " + new Vector3(((int)rotation - 2) * 90f, 0, 0));
+        DoorOpened = Quaternion.LookRotation(new Vector3(((int)rotation - 2) * 90f, 0, 0));
 
         timer = 0;
     }

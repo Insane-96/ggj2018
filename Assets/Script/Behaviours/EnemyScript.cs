@@ -67,7 +67,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         frequencyNoise = 5f;
 
-        speed = 0.014f;
+        speed = 0.1f;
 
         animator = this.GetComponent<Animator>();
 
@@ -160,7 +160,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
             transform.LookAt(target);
             direction.y = 0;
 
-            if (Vector3.Distance(transform.position, patrol.transform.position) < 0.5f)
+            if (Vector3.Distance(transform.position, patrol.transform.position) < 2f)
             {         
                 currentState = EnemyState.Idle;
                 patrols.Remove(patrol);

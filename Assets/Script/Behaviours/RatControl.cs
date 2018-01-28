@@ -29,6 +29,8 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
 
     void Update()
     {
+        if (!isSelected)
+            return;
         Movement();
         ReturnToPlayer();
         MakeNoise();
@@ -36,6 +38,9 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
 
     private void MakeNoise()
     {
+        if (!Input.GetButtonDown("JB2"))
+            return;
+
         Collider[] cols = Physics.OverlapSphere(transform.position, 6f);
         foreach (Collider col in cols)
         {

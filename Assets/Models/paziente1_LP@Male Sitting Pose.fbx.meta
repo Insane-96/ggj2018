@@ -1,0 +1,162 @@
+fileFormatVersion: 2
+guid: 00acd9955d168eb43a959fffed9bb8b8
+timeCreated: 1517138203
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: PAZIENTE1_2:Head
+    100002: PAZIENTE1_2:HeadTop_End
+    100004: PAZIENTE1_2:Hips
+    100006: PAZIENTE1_2:LeftArm
+    100008: PAZIENTE1_2:LeftFoot
+    100010: PAZIENTE1_2:LeftForeArm
+    100012: PAZIENTE1_2:LeftHand
+    100014: PAZIENTE1_2:LeftHandIndex1
+    100016: PAZIENTE1_2:LeftHandIndex2
+    100018: PAZIENTE1_2:LeftHandIndex3
+    100020: PAZIENTE1_2:LeftHandIndex4
+    100022: PAZIENTE1_2:LeftLeg
+    100024: PAZIENTE1_2:LeftShoulder
+    100026: PAZIENTE1_2:LeftToe_End
+    100028: PAZIENTE1_2:LeftToeBase
+    100030: PAZIENTE1_2:LeftUpLeg
+    100032: PAZIENTE1_2:Mesh
+    100034: PAZIENTE1_2:Neck
+    100036: PAZIENTE1_2:RightArm
+    100038: PAZIENTE1_2:RightFoot
+    100040: PAZIENTE1_2:RightForeArm
+    100042: PAZIENTE1_2:RightHand
+    100044: PAZIENTE1_2:RightHandIndex1
+    100046: PAZIENTE1_2:RightHandIndex2
+    100048: PAZIENTE1_2:RightHandIndex3
+    100050: PAZIENTE1_2:RightHandIndex4
+    100052: PAZIENTE1_2:RightLeg
+    100054: PAZIENTE1_2:RightShoulder
+    100056: PAZIENTE1_2:RightToe_End
+    100058: PAZIENTE1_2:RightToeBase
+    100060: PAZIENTE1_2:RightUpLeg
+    100062: PAZIENTE1_2:Spine
+    100064: PAZIENTE1_2:Spine1
+    100066: PAZIENTE1_2:Spine2
+    100068: //RootNode
+    400000: PAZIENTE1_2:Head
+    400002: PAZIENTE1_2:HeadTop_End
+    400004: PAZIENTE1_2:Hips
+    400006: PAZIENTE1_2:LeftArm
+    400008: PAZIENTE1_2:LeftFoot
+    400010: PAZIENTE1_2:LeftForeArm
+    400012: PAZIENTE1_2:LeftHand
+    400014: PAZIENTE1_2:LeftHandIndex1
+    400016: PAZIENTE1_2:LeftHandIndex2
+    400018: PAZIENTE1_2:LeftHandIndex3
+    400020: PAZIENTE1_2:LeftHandIndex4
+    400022: PAZIENTE1_2:LeftLeg
+    400024: PAZIENTE1_2:LeftShoulder
+    400026: PAZIENTE1_2:LeftToe_End
+    400028: PAZIENTE1_2:LeftToeBase
+    400030: PAZIENTE1_2:LeftUpLeg
+    400032: PAZIENTE1_2:Mesh
+    400034: PAZIENTE1_2:Neck
+    400036: PAZIENTE1_2:RightArm
+    400038: PAZIENTE1_2:RightFoot
+    400040: PAZIENTE1_2:RightForeArm
+    400042: PAZIENTE1_2:RightHand
+    400044: PAZIENTE1_2:RightHandIndex1
+    400046: PAZIENTE1_2:RightHandIndex2
+    400048: PAZIENTE1_2:RightHandIndex3
+    400050: PAZIENTE1_2:RightHandIndex4
+    400052: PAZIENTE1_2:RightLeg
+    400054: PAZIENTE1_2:RightShoulder
+    400056: PAZIENTE1_2:RightToe_End
+    400058: PAZIENTE1_2:RightToeBase
+    400060: PAZIENTE1_2:RightUpLeg
+    400062: PAZIENTE1_2:Spine
+    400064: PAZIENTE1_2:Spine1
+    400066: PAZIENTE1_2:Spine2
+    400068: //RootNode
+    2100000: lambert1
+    4300000: PAZIENTE1_2:Mesh
+    7400000: mixamo.com
+    9500000: //RootNode
+    13700000: PAZIENTE1_2:Mesh
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

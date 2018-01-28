@@ -73,7 +73,7 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 		if (isSelected) {
 			if (Input.GetButton ("JB4")) { 
 				body.velocity = Vector3.zero;
-				hitColliders = ShpereFocus (body.position, 6f, 1 << 8);
+				hitColliders = ShpereFocus (body.position, 10f, 1 << 8);
 				if (hitColliders.Length != 0) {
 					if (current == -1)
 						current = 0;
@@ -124,7 +124,7 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
     {
         RaycastHit hit;
         Debug.DrawRay(transform.Find("Head").position, transform.forward * 3.5f, Color.red);
-        if (Input.GetButtonDown("JB3") && Physics.Raycast(transform.Find("Head").position, transform.forward, out hit, 3.5f, 1 << LayerMask.NameToLayer("Door")))
+        if (Input.GetButtonDown("JB0") && Physics.Raycast(transform.Find("Head").position, transform.forward, out hit, 3.5f, 1 << LayerMask.NameToLayer("Door")))
         {
             IDoor door = hit.transform.GetComponent<IDoor>();
             if (door != null)

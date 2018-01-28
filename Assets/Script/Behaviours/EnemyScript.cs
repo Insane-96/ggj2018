@@ -303,7 +303,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     private void GameOver()
     {
-        Debug.Log("GAME OVER");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
     }
 
 

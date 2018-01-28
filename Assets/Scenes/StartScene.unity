@@ -1181,7 +1181,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Advanced
+  m_Text: Action
 --- !u!222 &929352193
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1290,7 +1290,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Simple
+  m_Text: Door
 --- !u!222 &974744351
 CanvasRenderer:
   m_ObjectHideFlags: 0

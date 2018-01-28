@@ -31,6 +31,20 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
     {
         Movement();
         ReturnToPlayer();
+        MakeNoise();
+    }
+
+    private void MakeNoise()
+    {
+        Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
+        foreach (Collider col in cols)
+        {
+            IEnemy enemy = col.GetComponent<IEnemy>();
+            if (enemy == null)
+                continue;
+
+            enemy.NoiseDetection(transform);
+        }
     }
 
     private void Movement()
@@ -51,8 +65,8 @@ public class RatControl : MonoBehaviour, IPlayableCharacter
     {
         if (!isSelected)
             return;
-        
-        if (Input.GetButtonDown("JB3") && Vector3.Distance(player.transform.position, this.transform.position) <= 6.0f)
+
+        if (Input.GetButtonDown("JB3"))
         {
             this.GetComponent<Rigidbody>().isKinematic = true;
             isSelected = false;

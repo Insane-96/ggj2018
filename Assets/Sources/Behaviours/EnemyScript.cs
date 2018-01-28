@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour, IEnemy
 {
+
+    private CharacterController character;
+
+    private bool mouseDetected;
+
+    private Vector3 mousePosition;
+
     enum EnemyState
     {
         Idle,
@@ -30,6 +37,12 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     public Transform[] patrolSpot;
 
+    public List<GameObject> patrols;
+
+    private Vector3 direction;
+
+    public Vector3 target;
+
     private int currentPatrolSpot;
     private float speed;
 
@@ -54,11 +67,13 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         frequencyNoise = 5f;
 
-        speed = 0.02f;
+        speed = 0.1f;
 
         animator = this.GetComponent<Animator>();
 
         frequencyRay = 0.5f;
+
+        character = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -119,35 +134,49 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     //patrol to the current patrol spot
     private void Patrol()
-    {
-
+    {      
+        if(patrols.Count <= 0)
+        {
+            patrols.Add(patrolSpot[0].gameObject);
+            patrols.Add(patrolSpot[1].gameObject);
+            patrols.Add(patrolSpot[2].gameObject);
+            patrols.Add(patrolSpot[3].gameObject);
+        }
         animator.SetBool("Movement", true);
 
-        Debug.Log("Enter Patrol State");
+       // Debug.Log("Enter Patrol State");
 
-        Vector3 direction = patrolSpot[currentPatrolSpot].position - this.transform.position;
-
-        direction.y = 0;
-
-        transform.position += direction.normalized * speed;
-
-        Vector3 myPos = new Vector3((int)this.transform.position.x, (int)this.transform.position.y, (int)this.transform.position.z);
-
-        Vector3 spotPos = new Vector3((int)patrolSpot[currentPatrolSpot].position.x, (int)patrolSpot[currentPatrolSpot].position.y, (int)patrolSpot[currentPatrolSpot].position.z);
-
-        if (myPos.x.Equals(spotPos.x) && myPos.z.Equals(spotPos.z))
+        patrols.Sort((a, b) =>
         {
-            currentState = EnemyState.Idle;
+            float distanceA = Vector3.Distance(transform.position, a.transform.position);
+            float distanceB = Vector3.Distance(transform.position, b.transform.position);
+            return distanceB.CompareTo(distanceA); 
+        });
+
+        foreach(GameObject patrol in patrols)
+        {
+            target = patrol.transform.position;
+            direction = target - this.transform.position;
+            transform.LookAt(target);
+            direction.y = 0;
+
+            if (Vector3.Distance(transform.position, patrol.transform.position) < 0.5f)
+            {         
+                currentState = EnemyState.Idle;
+                patrols.Remove(patrol);
+                return;
+            }                     
         }
 
+        character.Move(direction.normalized * speed);
     }
 
     //idle in the current spot
     private void Idle()
     {
         animator.SetBool("Movement", false);
-
-        Debug.Log("Enter Idle State");
+        
+       // Debug.Log("Enter Idle State");
 
         tIdle -= Time.deltaTime;
 
@@ -216,10 +245,9 @@ public class EnemyScript : MonoBehaviour, IEnemy
     {
         animator.SetBool("Movement", true);
 
-        Debug.Log("Enter MoveToNoise State");
-
         Vector3 direction = currentNoisePos.position - this.transform.position;
-
+        character.transform.LookAt(currentNoisePos.position);
+      
         direction.y = 0;
 
         transform.position += direction.normalized * speed;
@@ -229,6 +257,12 @@ public class EnemyScript : MonoBehaviour, IEnemy
         Vector3 noisePos = new Vector3((int)currentNoisePos.position.x, (int)currentNoisePos.position.y, (int)currentNoisePos.position.z);
 
         Debug.Log("my pos " + myPos + "Noise pos" + noisePos);
+
+        if (Vector3.Distance(transform.position, currentNoisePos.position) >= 2)
+        {
+            Debug.Log("il topo è scappato!");
+            currentState = EnemyState.Idle;
+        }
 
         if (myPos.x.Equals(noisePos.x) && myPos.z.Equals(noisePos.z))
         {
@@ -241,14 +275,17 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     public void NoiseDetection(Transform NoisePosition)
     {
+        mouseDetected = true;
+        mousePosition = NoisePosition.position;
+
         Debug.Log("noise detected");
         currentNoisePos = NoisePosition;
 
-        Vector3 direction = currentNoisePos.position - this.transform.position;
+        //Vector3 direction = currentNoisePos.position - this.transform.position;
 
-        direction.y = 0;
-
-        transform.LookAt(direction);
+       // direction.y = 0;
+        
+       // transform.LookAt(currentNoisePos);
 
         currentState = EnemyState.NoiseDetected;
     }

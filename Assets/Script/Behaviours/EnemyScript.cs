@@ -78,6 +78,8 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     void Update()
     {
+        EnemyRaycastDetection();
+
         tRay -= Time.deltaTime;
 
         if(tRay <= 0)
@@ -144,7 +146,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
         }
         animator.SetBool("Movement", true);
 
-       // Debug.Log("Enter Patrol State");
+       //Debug.Log("Enter Patrol State");
 
         patrols.Sort((a, b) =>
         {
@@ -273,6 +275,14 @@ public class EnemyScript : MonoBehaviour, IEnemy
         }
     }
 
+    private void EnemyRaycastDetection()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position + new Vector3(0,0.5f,0), transform.forward * 1f, Color.red);
+        bool OnFrontplayer = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward,out hit, 1, 1 << LayerMask.NameToLayer("Player"));
+        if (OnFrontplayer) GameOver();  
+    }
+
     public void NoiseDetection(Transform NoisePosition)
     {
         mouseDetected = true;
@@ -293,7 +303,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     private void GameOver()
     {
-        Debug.Log("GAME OVER");
+        Debug.Log("GAME OVER");    
     }
 
 

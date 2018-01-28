@@ -67,7 +67,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         frequencyNoise = 5f;
 
-        speed = 0.014f;
+        speed = 0.1f;
 
         animator = this.GetComponent<Animator>();
 
@@ -82,7 +82,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         tRay -= Time.deltaTime;
 
-        if(tRay <= 0)
+        if (tRay <= 0)
         {
             tRay = frequencyRay;
             Vector3 frw = this.transform.forward;
@@ -91,9 +91,9 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
             Ray ray = new Ray(transform.position, frw);
 
-            if(Physics.Raycast(ray, out hit, 10f))
+            if (Physics.Raycast(ray, out hit, 6f))
             {
-                if(hit.transform.GetComponent<IMainCharacter>()!= null)
+                if (hit.transform.GetComponent<IMainCharacter>() != null)
                 {
                     GameOver();
                 }
@@ -136,26 +136,26 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     //patrol to the current patrol spot
     private void Patrol()
-    {      
-        if(patrols.Count <= 0)
+    {
+        if (patrols.Count <= 0)
         {
-            patrols.Add(patrolSpot[0].gameObject);
-            patrols.Add(patrolSpot[1].gameObject);
-            patrols.Add(patrolSpot[2].gameObject);
-            patrols.Add(patrolSpot[3].gameObject);
+            for (int i = 0; i < patrolSpot.Length; i++)
+            {
+                patrols.Add(patrolSpot[i].gameObject); 
+            }
         }
         animator.SetBool("Movement", true);
 
-       //Debug.Log("Enter Patrol State");
+        //Debug.Log("Enter Patrol State");
 
         patrols.Sort((a, b) =>
         {
             float distanceA = Vector3.Distance(transform.position, a.transform.position);
             float distanceB = Vector3.Distance(transform.position, b.transform.position);
-            return distanceB.CompareTo(distanceA); 
+            return distanceB.CompareTo(distanceA);
         });
 
-        foreach(GameObject patrol in patrols)
+        foreach (GameObject patrol in patrols)
         {
             target = patrol.transform.position;
             direction = target - this.transform.position;
@@ -163,11 +163,11 @@ public class EnemyScript : MonoBehaviour, IEnemy
             direction.y = 0;
 
             if (Vector3.Distance(transform.position, patrol.transform.position) < 0.5f)
-            {         
+            {
                 currentState = EnemyState.Idle;
                 patrols.Remove(patrol);
                 return;
-            }                     
+            }
         }
 
         character.Move(direction.normalized * speed);
@@ -177,8 +177,8 @@ public class EnemyScript : MonoBehaviour, IEnemy
     private void Idle()
     {
         animator.SetBool("Movement", false);
-        
-       // Debug.Log("Enter Idle State");
+
+        // Debug.Log("Enter Idle State");
 
         tIdle -= Time.deltaTime;
 
@@ -192,7 +192,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
                 if (currentPatrolSpot >= patrolSpot.Length)
                 {
-                    if(!rewind)
+                    if (!rewind)
                     {
                         currentPatrolSpot = 0;
 
@@ -245,11 +245,19 @@ public class EnemyScript : MonoBehaviour, IEnemy
     //when detect a noise, move to the noise spot
     private void MoveToNoise()
     {
+
+        if (Vector3.Distance(transform.position, currentNoisePos.position) < 1.5f)
+        {
+            tNoise = frequencyNoise;
+            currentState = EnemyState.Idle;
+            return;
+        }
+
         animator.SetBool("Movement", true);
 
         Vector3 direction = currentNoisePos.position - this.transform.position;
         character.transform.LookAt(currentNoisePos.position);
-      
+
         direction.y = 0;
 
         transform.position += direction.normalized * speed;
@@ -265,22 +273,14 @@ public class EnemyScript : MonoBehaviour, IEnemy
             Debug.Log("il topo è scappato!");
             currentState = EnemyState.Idle;
         }
-
-        if (myPos.x.Equals(noisePos.x) && myPos.z.Equals(noisePos.z))
-        {
-            Debug.Log("Near Noise");
-            //wait time
-            tNoise = frequencyNoise;
-            currentState = EnemyState.NoiseIdle;
-        }
     }
 
     private void EnemyRaycastDetection()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position + new Vector3(0,0.5f,0), transform.forward * 1f, Color.red);
-        bool OnFrontplayer = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward,out hit, 1, 1 << LayerMask.NameToLayer("Player"));
-        if (OnFrontplayer) GameOver();  
+        Debug.DrawRay(transform.position + new Vector3(0, 3.5f, 0), transform.forward * 6.0f, Color.red);
+        bool OnFrontplayer = Physics.Raycast(transform.position + new Vector3(0, 3.5f, 0), transform.forward, out hit, 6.0f, 1 << LayerMask.NameToLayer("Player"));
+        if (OnFrontplayer) GameOver();
     }
 
     public void NoiseDetection(Transform NoisePosition)
@@ -293,9 +293,9 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         //Vector3 direction = currentNoisePos.position - this.transform.position;
 
-       // direction.y = 0;
-        
-       // transform.LookAt(currentNoisePos);
+        // direction.y = 0;
+
+        // transform.LookAt(currentNoisePos);
 
         currentState = EnemyState.NoiseDetected;
     }
@@ -303,7 +303,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     private void GameOver()
     {
-        Debug.Log("GAME OVER");    
+        Debug.Log("GAME OVER");
     }
 
 

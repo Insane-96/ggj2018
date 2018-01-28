@@ -64,6 +64,8 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
             if (!Vector3.zero.Equals(direction))
                 transform.rotation = Quaternion.LookRotation(direction);
 
+            this.GetComponent<Animator>().SetFloat("Movement", direction.magnitude);
+
 			body.velocity = direction * speed;
 
 		}
@@ -71,7 +73,7 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 		if (isSelected) {
 			if (Input.GetButton ("JB4")) { 
 				body.velocity = Vector3.zero;
-				hitColliders = ShpereFocus (body.position, 3f, 1 << 8);
+				hitColliders = ShpereFocus (body.position, 6f, 1 << 8);
 				if (hitColliders.Length != 0) {
 					if (current == -1)
 						current = 0;
@@ -117,13 +119,12 @@ public class PlayerControl : MonoBehaviour, IPlayableCharacter, IMainCharacter
 			body.isKinematic = true;
         }
     }
-
-    //Input.GetAxis("Fire3") >
+    
     void OpenDoor()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * 1, Color.red);
-        if (Input.GetKey(KeyCode.P) && Physics.Raycast(transform.position, transform.forward, out hit,1, 1 << LayerMask.NameToLayer("Door")))
+        Debug.DrawRay(transform.Find("Head").position, transform.forward * 3.5f, Color.red);
+        if (Input.GetButtonDown("JB3") && Physics.Raycast(transform.Find("Head").position, transform.forward, out hit, 3.5f, 1 << LayerMask.NameToLayer("Door")))
         {
             IDoor door = hit.transform.GetComponent<IDoor>();
             if (door != null)

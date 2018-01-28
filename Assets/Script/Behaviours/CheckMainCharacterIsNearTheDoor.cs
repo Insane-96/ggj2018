@@ -12,6 +12,10 @@ public class CheckMainCharacterIsNearTheDoor : MonoBehaviour
         {
             mainCharacter.ImNearTheDoor = true;
             Debug.Log(string.Format("I have the key: {0}", mainCharacter.ImNearTheDoor));
+
+
+            mainCharacter.IHaveTheKey = false;
+            mainCharacter.ImNearTheDoor = false;
         }
     }
 }

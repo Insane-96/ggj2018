@@ -11,7 +11,7 @@ public class CheckMainCharacter : MonoBehaviour
         if (mainCharacter != null)
         {
             mainCharacter.IHaveTheKey = true;
-            Debug.Log(string.Format("Key: {0}", mainCharacter.IHaveTheKey));
+            Destroy(this);
         }
     }
 }

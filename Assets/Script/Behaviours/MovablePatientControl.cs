@@ -42,6 +42,8 @@ public class MovablePatientControl : MonoBehaviour, IPlayableCharacter
 
         Vector3 direction = horizontal * Camera.main.transform.right + vertical * Camera.main.transform.forward;
         direction.y = 0;
+        if (!Vector3.zero.Equals(direction))
+            transform.rotation = Quaternion.LookRotation(direction);
 
         body.velocity = direction * movementSpeed;
     }

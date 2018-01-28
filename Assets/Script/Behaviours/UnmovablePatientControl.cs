@@ -25,7 +25,9 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
 
     void Update()
     {
-        Scream(6f);
+        if (!isSelected)
+            return;
+        Scream(12f);
         ReturnToPlayer();
     }
 
@@ -33,8 +35,9 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
     {
         if (!isSelected)
             return;
+        if (!Input.GetButtonDown("JB2"))
+            return;
 
-        //TODO Scream
         Collider[] cols = Physics.OverlapSphere(transform.position, noiseRadius);
         foreach (Collider col in cols)
         {
@@ -51,7 +54,7 @@ public class UnmovablePatientControl : MonoBehaviour, IPlayableCharacter
         if (!isSelected)
             return;
 
-        if (Input.GetButtonDown("JB3") && Vector3.Distance(player.transform.position, this.transform.position) <= 6.0f)
+        if (Input.GetButtonDown("JB3"))
         {
             isSelected = false;
             playableCharacter.Select();

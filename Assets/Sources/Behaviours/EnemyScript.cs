@@ -67,7 +67,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
         frequencyNoise = 5f;
 
-        speed = 0.1f;
+        speed = 0.014f;
 
         animator = this.GetComponent<Animator>();
 
